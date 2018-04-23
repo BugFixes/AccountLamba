@@ -1,7 +1,7 @@
 ---
 swagger: "2.0"
 info:
-  version: "2018-04-20T14:48:06Z"
+  version: "2018-04-23T14:00:23Z"
   title: "Account"
 host: "account.bugfix.es"
 basePath: "/v1"
@@ -203,7 +203,7 @@ paths:
         200:
           description: "200 response"
           schema:
-            $ref: "#/definitions/Empty"
+            $ref: "#/definitions/Success"
       security:
       - api_key: []
   /application/secret/{applicationKey}:
@@ -227,7 +227,7 @@ paths:
         200:
           description: "200 response"
           schema:
-            $ref: "#/definitions/Empty"
+            $ref: "#/definitions/Success"
       security:
       - api_key: []
   /application/verify/{applicationKey}/{applicationId}:
@@ -247,7 +247,7 @@ paths:
         200:
           description: "200 response"
           schema:
-            $ref: "#/definitions/Empty"
+            $ref: "#/definitions/Success"
       security:
       - api_key: []
   /application/version:
@@ -294,7 +294,7 @@ paths:
         200:
           description: "200 response"
           schema:
-            $ref: "#/definitions/Empty"
+            $ref: "#/definitions/Success"
       security:
       - api_key: []
   /application/versions:
@@ -370,9 +370,6 @@ definitions:
       key:
         type: "string"
     title: "Application Key"
-  Empty:
-    type: "object"
-    title: "Empty Schema"
   Details:
     type: "object"
     properties:

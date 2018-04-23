@@ -1,0 +1,465 @@
+---
+swagger: "2.0"
+info:
+  version: "2018-04-20T14:48:06Z"
+  title: "Account"
+host: "account.bugfix.es"
+basePath: "/v1"
+schemes:
+- "https"
+paths:
+  /account:
+    post:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "AccountCreate"
+        required: true
+        schema:
+          $ref: "#/definitions/AccountCreate"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Success"
+      security:
+      - api_key: []
+  /account/confirm:
+    post:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "requestId"
+        in: "header"
+        required: true
+        type: "string"
+      - name: "x-api-secret"
+        in: "header"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Success"
+      security:
+      - api_key: []
+  /account/login:
+    post:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "Login"
+        required: true
+        schema:
+          $ref: "#/definitions/Login"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Success"
+      security:
+      - api_key: []
+  /account/verify:
+    post:
+      produces:
+      - "application/json"
+      parameters:
+      - name: "requestId"
+        in: "header"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Success"
+      security:
+      - api_key: []
+  /application:
+    post:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "requestId"
+        in: "header"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "ApplicationCreate"
+        required: true
+        schema:
+          $ref: "#/definitions/ApplicationCreate"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Details"
+      security:
+      - api_key: []
+  /application/details/id/{id}:
+    get:
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authyId"
+        in: "header"
+        required: true
+        type: "string"
+      - name: "requestId"
+        in: "header"
+        required: true
+        type: "string"
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Details"
+      security:
+      - api_key: []
+  /application/details/key/{key}:
+    get:
+      produces:
+      - "application/json"
+      parameters:
+      - name: "key"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "authyId"
+        in: "header"
+        required: true
+        type: "string"
+      - name: "requestId"
+        in: "header"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Details"
+      security:
+      - api_key: []
+  /application/key/{applicationId}:
+    get:
+      produces:
+      - "application/json"
+      parameters:
+      - name: "applicationId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "authyId"
+        in: "header"
+        required: true
+        type: "string"
+      - name: "requestId"
+        in: "header"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/ApplicationKey"
+      security:
+      - api_key: []
+  /application/name:
+    put:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authyId"
+        in: "header"
+        required: true
+        type: "string"
+      - name: "requestId"
+        in: "header"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "RenameApplication"
+        required: true
+        schema:
+          $ref: "#/definitions/RenameApplication"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+      security:
+      - api_key: []
+  /application/secret/{applicationKey}:
+    get:
+      produces:
+      - "application/json"
+      parameters:
+      - name: "applicationKey"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "authyId"
+        in: "header"
+        required: true
+        type: "string"
+      - name: "requestId"
+        in: "header"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+      security:
+      - api_key: []
+  /application/verify/{applicationKey}/{applicationId}:
+    get:
+      produces:
+      - "application/json"
+      parameters:
+      - name: "applicationId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "applicationKey"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+      security:
+      - api_key: []
+  /application/version:
+    post:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authyId"
+        in: "header"
+        required: true
+        type: "string"
+      - name: "requestId"
+        in: "header"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "VersionCreate"
+        required: true
+        schema:
+          $ref: "#/definitions/VersionCreate"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/VersionCreated"
+      security:
+      - api_key: []
+  /application/version/{applicationKey}/{accountId}:
+    get:
+      produces:
+      - "application/json"
+      parameters:
+      - name: "applicationKey"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "accountId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Empty"
+      security:
+      - api_key: []
+  /application/versions:
+    get:
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authyId"
+        in: "header"
+        required: true
+        type: "string"
+      - name: "requestId"
+        in: "header"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Versions"
+      security:
+      - api_key: []
+  /applications:
+    get:
+      produces:
+      - "application/json"
+      parameters:
+      - name: "authyId"
+        in: "header"
+        required: true
+        type: "string"
+      - name: "requestId"
+        in: "header"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Applications"
+      security:
+      - api_key: []
+  /health-check:
+    x-amazon-apigateway-any-method:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "200 response"
+          schema:
+            $ref: "#/definitions/Success"
+securityDefinitions:
+  api_key:
+    type: "apiKey"
+    name: "x-api-key"
+    in: "header"
+definitions:
+  ApplicationCreate:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      version:
+        type: "string"
+      accountId:
+        type: "string"
+    title: "Application Create"
+  ApplicationKey:
+    type: "object"
+    properties:
+      key:
+        type: "string"
+    title: "Application Key"
+  Empty:
+    type: "object"
+    title: "Empty Schema"
+  Details:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      name:
+        type: "string"
+      version:
+        type: "string"
+    title: "Details"
+  Versions:
+    title: "Application Versions"
+    type: "array"
+    items:
+      type: "object"
+      properties:
+        applicationId:
+          type: "string"
+        versionId:
+          type: "string"
+        version:
+          type: "string"
+  Applications:
+    title: "Applications"
+    type: "array"
+    items:
+      type: "object"
+      properties:
+        applicationId:
+          type: "string"
+        name:
+          type: "string"
+        version:
+          type: "string"
+  RenameApplication:
+    type: "object"
+    properties:
+      accountId:
+        type: "string"
+      applicationId:
+        type: "string"
+      name:
+        type: "string"
+    title: "Rename Application"
+  Login:
+    type: "object"
+    properties:
+      email:
+        type: "string"
+    title: "Login"
+  Success:
+    type: "object"
+    properties:
+      message:
+        type: "string"
+      code:
+        type: "number"
+      requestId:
+        type: "string"
+    title: "Success"
+  AccountCreate:
+    type: "object"
+    properties:
+      email:
+        type: "string"
+      name:
+        type: "string"
+      cellphone:
+        type: "number"
+      countryCode:
+        type: "number"
+    title: "Account Create"
+  VersionCreate:
+    type: "object"
+    properties:
+      applicationId:
+        type: "string"
+      accountId:
+        type: "string"
+      version:
+        type: "string"
+    title: "Version Create"
+  VersionCreated:
+    type: "object"
+    properties:
+      key:
+        type: "string"
+      secret:
+        type: "string"
+    title: "Version Created"
